@@ -12,6 +12,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.plugin.Plugin;
 
@@ -26,6 +27,10 @@ public class MenuClickListener implements Listener {
 	public void onClick(InventoryClickEvent e) {
 		if (Maps.getInstance().menus.containsKey(e.getWhoClicked().getUniqueId())) {
 			ChestMenu menu = Maps.getInstance().menus.get(e.getWhoClicked().getUniqueId());
+			if(e.getAction() == InventoryAction.COLLECT_TO_CURSOR){
+				e.setCancelled(true);
+				return;
+			}
 			if (e.getRawSlot() < e.getInventory().getSize()) {
 				MenuClickHandler handler = menu.getMenuClickHandler(e.getSlot());
 				if(handler == null) {
