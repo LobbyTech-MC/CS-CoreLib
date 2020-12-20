@@ -36,7 +36,7 @@ public class ProtectionManager {
 	public boolean canAccessChest(UUID uuid, Block b, boolean message) {
 		if (manager == null) return false;
 		
-		return manager.hasPermission(Bukkit.getOfflinePlayer(uuid), b.getLocation(), ProtectableAction.ACCESS_INVENTORIES);
+		return manager.hasPermission(Bukkit.getOfflinePlayer(uuid), b.getLocation(), ProtectableAction.INTERACT_BLOCK);
 	}
 
 }
